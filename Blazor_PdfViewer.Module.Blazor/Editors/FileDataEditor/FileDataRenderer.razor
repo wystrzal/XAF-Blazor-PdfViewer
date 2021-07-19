@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using System.IO;
+@using Microsoft.AspNetCore.Components.Forms
+
+
+@if (!string.IsNullOrEmpty(pdfContent))
+{
+    if (!ComponentModel.ReadOnly)
+    {
+        <div>
+            <button type="button" class="dxbs-toolbar-btn block-i btn btn-secondary my-2" @onclick="@ClearPdf">
+                <div class="xaf-image image xaf-toolbar-image" style="background-color: currentColor; -webkit-mask: url('IImageService/Action_Delete?hash=b5fdf6b3ce9fd4b95fc02cf159ed07a9'); mask: url('IImageService/Action_Delete?hash=b5fdf6b3ce9fd4b95fc02cf159ed07a9'); -webkit-mask-position: center; mask-position: center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; height: 18px; width: 18px; mask-size: 18px; -webkit-mask-size: 18px; "></div>
+                <span>Delete</span>
+            </button>
+        </div>
+    }
+    <div>
+        <object data="@pdfContent" width="800" height="800"></object>
+    </div>
+}
+@if (ComponentModel.Value.Size <= 0)
+{
+    <InputFile OnChange="@SingleUpload" />
+}
+
+@code {
+    [Parameter]
+    public FileDataModel ComponentModel { get; set; }
+
+    string pdfContent = "";
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            base.OnInitialized();
+            PdfPreview(ComponentModel.Value);
+        }
+    }
+
+    private async Task SingleUpload(InputFileChangeEventArgs e)
+    {
+        var path = Path.GetFullPath(e.File.Name);
+        var fileExtension = Path.GetExtension(path);
+
+        if (fileExtension != ".pdf")
+        {
+            return;
+        }
+
+        MemoryStream ms = new MemoryStream();
+        await e.File.OpenReadStream().CopyToAsync(ms);
+        var bytes = ms.ToArray();
+        ComponentModel.Value.LoadFromStream(e.File.Name, ms);
+        ((dynamic)ComponentModel.Value).Content = bytes;
+        PdfPreview(ComponentModel.Value);
+        StateHasChanged();
+    }
+
+    private void PdfPreview(dynamic fileData)
+    {
+        if (fileData == null || fileData.Size <= 0)
+        {
+            return;
+        }
+        pdfContent = "data:application/pdf;base64,";
+        pdfContent += System.Convert.ToBase64String(fileData.Content);
+        StateHasChanged();
+    }
+
+    private void ClearPdf()
+    {
+        ComponentModel.Value.Clear();
+        pdfContent = "";
+        StateHasChanged();
+    }
+
+    public static RenderFragment Create(FileDataModel componentModel) =>
+    @<FileDataRenderer ComponentModel=@componentModel />;
+}

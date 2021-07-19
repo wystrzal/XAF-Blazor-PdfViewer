@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Deterministic>false</Deterministic>
+    <AssemblyVersion>1.0.*</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Model.DesignedDiffs.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DevExpress.ExpressApp" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.AuditTrail" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.CloneObject" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.ConditionalAppearance" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Objects" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.ReportsV2" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.StateMachine" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Validation" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.ViewVariantsModule" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Xpo" Version="21.1.4" />
+    <PackageReference Include="DevExpress.Persistent.Base" Version="21.1.4" />
+    <PackageReference Include="DevExpress.Persistent.BaseImpl" Version="21.1.4" />
+  </ItemGroup>
+</Project>

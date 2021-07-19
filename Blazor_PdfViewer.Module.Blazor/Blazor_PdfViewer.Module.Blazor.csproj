@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <DxExtendStartupHost>False</DxExtendStartupHost>
+    <Deterministic>false</Deterministic>
+    <AssemblyVersion>1.0.*</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Model.DesignedDiffs.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Editors\FileDataEditor\FileDataRenderer.razor" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DevExpress.ExpressApp" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Blazor" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.FileAttachment.Blazor" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.ReportsV2.Blazor" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="21.1.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Xpo" Version="21.1.4" />
+    <PackageReference Include="DevExpress.Persistent.Base" Version="21.1.4" />
+    <PackageReference Include="DevExpress.Persistent.BaseImpl" Version="21.1.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blazor_PdfViewer.Module\Blazor_PdfViewer.Module.csproj">
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

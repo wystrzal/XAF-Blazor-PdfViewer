@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="21.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="21.1.4.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="PdfViewer_DetailView">
+      <Items>
+        <PropertyEditor Id="File" PropertyEditorType="Blazor_PdfViewer.Module.Blazor.Editors.FileDataEditor.CustomFileDataPropertyEditor" />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>
